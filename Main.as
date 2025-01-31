@@ -713,9 +713,16 @@ int GetUICheckpointTime() {
   if (linkPage is null) {
     return -1;
   }
-  CGameManialinkControl @race_Checkpoint = linkPage.GetClassChildren_Result[0];
-  if (race_Checkpoint is null ||
-      race_Checkpoint.ControlId != "Race_Checkpoint") { // validation
+  try
+  {
+    CGameManialinkControl @race_Checkpoint = linkPage.GetClassChildren_Result[0];
+    if (race_Checkpoint is null ||
+        race_Checkpoint.ControlId != "Race_Checkpoint") { // validation
+      return -1;
+    }
+  }
+  catch 
+  {
     return -1;
   }
   CGameManialinkControl @frame_checkpoint =
